@@ -5,13 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 @Data
 public class User {
 
-//    @Id
+    @Id
+    @GeneratedValue
      Integer id;
      String name;
 }

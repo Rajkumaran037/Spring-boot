@@ -47,6 +47,12 @@
 			<version>1.18.30</version> <!-- latest stable for Java 8+ -->
 			<scope>provided</scope>
 		</dependency>
+		<!-- h2 database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 

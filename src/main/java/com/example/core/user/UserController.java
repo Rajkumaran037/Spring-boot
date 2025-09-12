@@ -1,10 +1,17 @@
 package com.example.core.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class UserController {
+
+    private final UserService userService;
+    // Spring Boot injects UserService automatically
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/home")
     public String home() {
@@ -23,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/persistUser")
-    public String persistUser(@RequestBody User user) {
-        return "User persisted with id: " + user.id + " and name: " + user.name;
+    public User persistUser(@RequestBody User user) {
+        return userService.persistUser(user);
     }
 
 
