@@ -14,6 +14,6 @@ public class UserService {
     }
     public User persistUser(User user) {
         System.out.println("user in service---"+user);
-        return  userRepository.persistUser(user);
+        return  userRepository.save(user);
     }
 }

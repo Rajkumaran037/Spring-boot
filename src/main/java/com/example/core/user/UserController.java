@@ -31,7 +31,8 @@ public class UserController {
 
     @PostMapping("/persistUser")
     public User persistUser(@RequestBody User user) {
-        return userService.persistUser(user);
+        User responseUser= userService.persistUser(user);
+        return responseUser;
     }
 
 
