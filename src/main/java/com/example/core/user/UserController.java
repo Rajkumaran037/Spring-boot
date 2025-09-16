@@ -15,7 +15,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String home() {
-        return "Welcome Spring !";
+        return "Welcome to our page!";
     }
 
     @GetMapping("/getUserFromPath{id}/{dummy}")
@@ -25,14 +25,13 @@ public class UserController {
 
 
     @GetMapping("/getUserFromQuery")
-    public String getUserFromQuery(@RequestParam("id") long id,@RequestParam("dummy") long dummy,@RequestParam("dummy1") long dummy1) {
-        return dummy+"Welcome Spring"+id;
+    public User getUserFromQuery(@RequestParam("id") long id,@RequestParam("dummy") long dummy,@RequestParam("dummy1") long dummy1) {
+        return userService.getUserById(id);
     }
 
     @PostMapping("/persistUser")
     public User persistUser(@RequestBody User user) {
-        User responseUser= userService.persistUser(user);
-        return responseUser;
+        return userService.persistUser(user);
     }
 
 

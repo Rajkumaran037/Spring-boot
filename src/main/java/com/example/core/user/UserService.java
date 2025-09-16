@@ -12,8 +12,14 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     public User persistUser(User user) {
-        System.out.println("user in service---"+user);
         return  userRepository.save(user);
     }
+
+    public User getUserById(Long id)
+    {
+        return userRepository.getUserById(id).map(user -> user).orElse(null);
+    }
+
 }
