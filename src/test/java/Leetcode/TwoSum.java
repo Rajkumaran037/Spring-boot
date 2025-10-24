@@ -6,6 +6,7 @@ public class TwoSum {
 
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer,Integer> map=new HashMap<>();
+
         for(int i=0;i<nums.length;i++)
         {
             System.out.println(i);
@@ -22,6 +23,7 @@ public class TwoSum {
 
         return new int[]{};
     }
+
 
     public static void main(String[] args) {
         TwoSum twoSum=new TwoSum();

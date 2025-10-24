@@ -2,6 +2,7 @@ package com.example.core.user;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,6 @@ import java.util.Optional;
 public class UserRepository  {
 
     private EntityManager entityManager;
-
 
     public Optional<User> findByName(String name)
     {
