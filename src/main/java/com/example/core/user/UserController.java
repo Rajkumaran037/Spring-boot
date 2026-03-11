@@ -1,15 +1,18 @@
 package com.example.core.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserService userService;
-    // Spring Boot injects UserService automatically
-    public UserController(UserService userService) {
+	private final UserAppService userService;
+
+	@Autowired
+	public UserController(UserAppService userService) {
         this.userService = userService;
     }
 
@@ -18,27 +21,5 @@ public class UserController {
         return "Welcome to our page!";
     }
 
-    @GetMapping("/getUserFromPath{id}/{dummy}")
-    public String getUserFromPath(@PathVariable long id,@PathVariable("dummy") long dummy) {
-        return dummy+"Welcome Spring"+id;
-    }
-
-
-    @GetMapping("/getUserFromQuery")
-    public User getUserFromQuery(@RequestParam("id") long id,@RequestParam("dummy") long dummy,@RequestParam("dummy1") long dummy1) {
-        return userService.getUserById(id);
-    }
-
-    @PostMapping("/persistUser")
-    public User persistUser(@RequestBody User user) {
-        return userService.persistUser(user);
-    }
-
-
-
 
 }
-
-
-
-

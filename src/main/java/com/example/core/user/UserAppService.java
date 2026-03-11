@@ -4,22 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserAppService {
 
-    @Autowired
    private final UserRepository userRepository;
-    // Spring Boot automatically injects UserRepository here
-    public UserService(UserRepository userRepository) {
+
+		@Autowired
+    public UserAppService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public User persistUser(User user) {
+    public Users persistUser(Users user) {
         return  userRepository.save(user);
     }
 
-    public User getUserById(Long id)
+		public Users getUserById(Integer id)
     {
-        return userRepository.getUserById(id).map(user -> user).orElse(null);
+			return userRepository.findById(id).map(user -> user).orElse(null);
     }
-
 }
