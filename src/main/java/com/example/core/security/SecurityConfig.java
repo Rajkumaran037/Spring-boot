@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -28,7 +29,7 @@ public class SecurityConfig {
 								.permitAll()
 								.anyRequest()
 								.authenticated())
-				.httpBasic(https -> https.disable())
+				.httpBasic(Customizer.withDefaults()) // default settings validate all the permitted paths
 				.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
 				.headers(h -> h.frameOptions().disable())
 				.build();
@@ -44,13 +45,12 @@ public class SecurityConfig {
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		System.out.println("BCryptPasswordEncoder");
-		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder(12);
 	}
 
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
-		System.out.println("AuthenticationProvider--->");
+		System.out.println("AuthenticationProvider");
 		DaoAuthenticationProvider dao = new DaoAuthenticationProvider();
 		dao.setPasswordEncoder(new BCryptPasswordEncoder(12));
 		dao.setUserDetailsService(userDetailServiceImpl);
